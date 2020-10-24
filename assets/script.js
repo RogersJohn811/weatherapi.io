@@ -25,6 +25,17 @@ $(document).ready(function () {
             $("#temp").text("Temperature: " + Math.floor(tempF) + " F");
             $("#humidiy").text("Humidity: " + response.main.humidity + "%");
             $("#wind-speed").text("Wind Speed: " + response.wind.speed + " mph");
+
+            //Grab API for UV index
+            queryURL1 = "" + response.value
+
+            $.ajax({
+                url: queryURL1,
+                method: "GET",
+            }).then(function (response) {
+                console.log(response);
+                $("#UV-index").text("UV Index: " + response.value);
+            });
         });
     });
 });
