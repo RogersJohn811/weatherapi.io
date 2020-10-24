@@ -16,6 +16,15 @@ $(document).ready(function () {
         $.ajax({
             url: queryURL,
             method: "GET",
-        }).then
-    })
-}
+        }).then(function(response) {
+            console.log(response);
+            console.log(response.main.temp);
+            var tempF = ((response.main.temp - 273.15) * (9 / 5) + 32);
+
+            $("#cityToday").text(citySearchValue);
+            $("#temp").text("Temperature: " + Math.floor(tempF) + " F");
+            $("#humidiy").text("Humidity: " + response.main.humidity + "%");
+            $("#wind-speed").text("Wind Speed: " + response.wind.speed + " mph");
+        });
+    });
+});
