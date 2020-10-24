@@ -32,3 +32,28 @@ $(document).ready(function () {
          //lat & lon needed for UV INDEX
          var lat = JSON.stringify(response.coord.lat);
          var lon = JSON.stringify(response.coord.lon);
+
+         $.ajax({
+            method: "GET",
+            url: "http://api.openweathermap.org/data/2.5/uvi?lat=" + lat + "&lon=" + lon + "&appid=" + apiKey
+            //url for UV index.
+        }).then(function (uvResponse) {
+            //printing to html:
+            $(".uv").html("<b>" + "UV Index: " + uvResponse.value + " ");
+            var uv = $("<i>").attr("class", "fas fa-sun");
+            $(".uv").append(uv);
+
+            if (uvResponse.value >= 1 && uvResponse.value < 3) {
+                $(".uv").css('background-color', 'green');
+            }
+            if (uvResponse.value >= 3 && uvResponse.value <= 6) {
+                $(".uv").css('background-color', 'yellow');
+            }
+            if (uvResponse.value >= 6 && uvResponse.value <= 8) {
+                $(".uv").css('background-color', 'orange');
+            }
+            if (uvResponse.value >= 8 && uvResponse.value <= 10) {
+                $(".uv").css('background-color', 'red');
+            }
+        })
+    })
