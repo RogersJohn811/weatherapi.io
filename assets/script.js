@@ -22,4 +22,13 @@ $(document).ready(function () {
         var wind = $("<i>").attr("class", "fas fa-wind");
         $(".wind").append(wind);
 
-        
+        //getting the icon logo 
+         var iconLogo = response.weather[0].icon;
+         var icon = "http://openweathermap.org/img/wn/" + iconLogo + "@2x.png";
+         var addIcon = $(".name"); //where the icon is going to go..next to city name and date
+         var iconImg = $("<img>").attr("src", icon);
+         addIcon.append(iconImg); //appending so it can show
+
+         //lat & lon needed for UV INDEX
+         var lat = JSON.stringify(response.coord.lat);
+         var lon = JSON.stringify(response.coord.lon);
