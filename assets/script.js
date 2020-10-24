@@ -57,3 +57,20 @@ $(document).ready(function () {
             }
         })
     })
+     //making another ajax call for 5 day weather forecast.
+     $.ajax({
+        method: "GET",
+        url: "https://api.openweathermap.org/data/2.5/forecast?q=" + userInput + "&units=imperial&appid=" + apiKey
+        //this url is the 5 day forecast weather api
+   }).then(function (forecastResponse) {
+        for (var i = 0; i < 8; i++) {
+            //substring grabs a string within a string..this case grabbing from 11..because I just want the afternoon.
+            if ((forecastResponse.list[i].dt_txt).substring(11) === "12:00:00") {
+                $("#5dayCast").html("<h1>5 Day Forecast</h1>" + "<hr>"); //title
+                var date1 = [
+                    {
+                        date: ("<p>" + forecastResponse.list[i].dt_txt + "</p>"),
+                        temperature: ("<h3>" + "Temperature: " + forecastResponse.list[i].main.temp + " F " + "</h3>"),
+                        humidity: ("<h3>" + "Humidity: " + forecastResponse.list[i].main.humidity + "</h3>" + "<hr>")
+                    }
+                ];
