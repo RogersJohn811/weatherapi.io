@@ -1,0 +1,20 @@
+body {
+    background-image: url("https://i.pinimg.com/originals/fd/c6/b9/fdc6b996996d3f0d1d3d8a80e2df65f2.jpg");
+    background-attachment: fixed;
+    background-size: cover;
+}
+
+.cities {
+    background-color: lightgray;
+    width: 300px;
+    padding: 10px;
+}
+
+header {
+    text-align: center;
+    font-family: 'Montserrat', sans-serif;   
+    margin-top: 60px;
+    margin-bottom: 80px;
+    color: white;
+}
+
