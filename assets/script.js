@@ -165,3 +165,39 @@ $(document).ready(function () {
                 $(".wind").html("<b>" + "Wind Speed: " + buttonResponse.wind.speed + " ");
                 var wind = $("<i>").attr("class", "fas fa-wind");
                 $(".wind").append(wind);
+
+                //getting the icon logo 
+                var iconLogo = buttonResponse.weather[0].icon;
+                var icon = "http://openweathermap.org/img/wn/" + iconLogo + "@2x.png";
+                console.log(iconLogo);
+                var addIcon = $(".name"); //where the icon is going to go..next to city name and date
+                var iconImg = $("<img>").attr("src", icon);
+                addIcon.append(iconImg); //appending so it can show
+
+                //lat & lon needed for UV INDEX
+                var lat = JSON.stringify(buttonResponse.coord.lat);
+                var lon = JSON.stringify(buttonResponse.coord.lon);
+                $.ajax({
+                    method: "GET",
+                    url: "http://api.openweathermap.org/data/2.5/uvi?lat=" + lat + "&lon=" + lon + "&appid=" + apiKey
+                }).then(function (fcUV) {
+                    //printing to html
+                    $(".uv").html("<b>" + "UV Index: " + fcUV.value + " ");
+                    var uv = $("<i>").attr("class", "fas fa-sun");
+                    $(".uv").append(uv);
+                    //do the if statementfcUVlor. ??
+                    if (fcUV.value >= 1 && fcUV.value < 3) {
+                        $(".uv").css('background-color', 'green');
+                    }
+                    if (fcUV.value >= 3 && fcUV.value <= 6) {
+                        $(".uv").css('background-color', 'yellow');
+                    }
+                    if (fcUV.value >= 6 && fcUV.value <= 8) {
+                        $(".uv").css('background-color', 'orange');
+                    }
+                    if (fcUV.value >= 8 && fcUV.value <= 10) {
+                        $(".uv").css('background-color', 'red');
+                    }
+                });
+
+            
