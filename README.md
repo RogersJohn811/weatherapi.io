@@ -2,7 +2,7 @@ This is an example of a basic weather app using Open Weather Map APIs.
 
 How to use:
 
-    To find out the weather of a certain city, simply type the city name into the 
+To find out the weather of a certain city, simply type the city name into the 
 search bar and hit the search button. Then the weather app will show you the current weather 
 and the 5 day forecast.
 
