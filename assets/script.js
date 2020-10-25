@@ -74,3 +74,17 @@ $(document).ready(function () {
                         humidity: ("<h3>" + "Humidity: " + forecastResponse.list[i].main.humidity + "</h3>" + "<hr>")
                     }
                 ];
+                var forecastIcon1 = forecastResponse.list[0].weather[0].icon;
+                var fcIcon1 = "http://openweathermap.org/img/wn/" + forecastIcon1 + "@2x.png";
+                var addforecastIcon1 = $("#5dayCast"); //where the icon is going to go.
+                var iconImg1 = $("<img>").attr("src", fcIcon1);
+                addforecastIcon1.append(iconImg1, date1[0].date, date1[0].temperature, date1[0].humidity);
+
+                var date2 = [
+                    {
+                        date: ("<p>" + forecastResponse.list[i + 8].dt_txt + "</p>"),
+                        temperature: ("<h3>" + "Temperature: " + forecastResponse.list[i + 8].main.temp + " F " + "</h3>"),
+                        humidity: ("<h3>" + "Humidity: " + forecastResponse.list[i + 8].main.humidity + "</h3>" + "<hr>")
+                    }
+                ];
+                
