@@ -87,4 +87,81 @@ $(document).ready(function () {
                         humidity: ("<h3>" + "Humidity: " + forecastResponse.list[i + 8].main.humidity + "</h3>" + "<hr>")
                     }
                 ];
-                
+                var forecastIcon2 = forecastResponse.list[i + 8].weather[0].icon;
+                var fcIcon2 = "http://openweathermap.org/img/wn/" + forecastIcon2 + "@2x.png";
+                var addforecastIcon2 = $("#5dayCast"); //where the icon is going to go.
+                var iconImg2 = $("<img>").attr("src", fcIcon2);
+                addforecastIcon2.append(iconImg2, date2[0].date, date2[0].temperature, date2[0].humidity);
+
+                var date3 = [
+                    {
+                        date: ("<p>" + forecastResponse.list[i + 16].dt_txt + "</p>"),
+                        temperature: ("<h3>" + "Temperature: " + forecastResponse.list[i + 16].main.temp + " F " + "</h3>"),
+                        humidity: ("<h3>" + "Humidity: " + forecastResponse.list[i + 16].main.humidity + "<h3>" + "<hr>")
+                    }
+                ];
+                var forecastIcon3 = forecastResponse.list[i + 16].weather[0].icon;
+                var fcIcon3 = "http://openweathermap.org/img/wn/" + forecastIcon3 + "@2x.png";
+                var addforecastIcon3 = $("#5dayCast"); //where the icon is going to go.
+                var iconImg3 = $("<img>").attr("src", fcIcon3);
+                addforecastIcon3.append(iconImg3, date3[0].date, date3[0].temperature, date3[0].humidity);
+
+                var date4 = [
+                    {
+                        date: ("<p>" + forecastResponse.list[i + 24].dt_txt + "</p>"),
+                        temperature: ("<h3>" + "Temperature: " + forecastResponse.list[i + 24].main.temp + " F " + "</h3>"),
+                        humidity: ("<h3>" + "Humidity: " + forecastResponse.list[i + 24].main.humidity + "</h3>" + "<hr>")
+                    }
+                ];
+                var forecastIcon4 = forecastResponse.list[i + 24].weather[0].icon;
+                var fcIcon4 = "http://openweathermap.org/img/wn/" + forecastIcon4 + "@2x.png";
+                var addforecastIcon4 = $("#5dayCast"); //where the icon is going to go.
+                var iconImg4 = $("<img>").attr("src", fcIcon4);
+                addforecastIcon4.append(iconImg4, date4[0].date, date4[0].temperature, date4[0].humidity);
+
+                var date5 = [
+                    {
+                        date: ("<p>" + forecastResponse.list[i + 32].dt_txt + "</p>"),
+                        temperature: ("<h3>" + "Temperature: " + forecastResponse.list[i + 32].main.temp + " F " + "</h3>"),
+                        humidity: ("<h3>" + "Humidity: " + forecastResponse.list[i + 32].main.humidity + "</h3>")
+                    }
+                ];
+                var forecastIcon5 = forecastResponse.list[i + 32].weather[0].icon; //icon
+                var fcIcon5 = "http://openweathermap.org/img/wn/" + forecastIcon5 + "@2x.png"; //grabbing icon
+                var addforecastIcon5 = $("#5dayCast");
+                var iconImg5 = $("<img>").attr("src", fcIcon5);
+                addforecastIcon5.append(iconImg5, date5[0].date, date5[0].temperature, date5[0].humidity);
+            }
+        }
+    });
+    var cities1= []; //creating another empty array
+        //create another ajax call and separate functions for city buttons.
+        function renderCities() { //function to get the value of city and append to city blocks.
+            cities1.push(userInput); // the city from the textinput is added to our cities array shown above.
+            for (var i = 0; i < cities1.length; i++) {
+                var x = $("#cityList");
+                x.attr("data-city", cities1[i]);
+                x.text(cities1[i]);
+                $("#cityBlocks").append(x);
+            }
+            localStorage.setItem("Saved City", JSON.stringify(cities1));
+            localStorage.getItem("Saved City");
+        }
+        //function to grab THIS attr, whichever city is clicked on and then grab the info and display on html.
+        //have to do the same for the 5 day weather forecast.
+        function displayCityInfo() {
+            var city = $(this).attr("data-city");
+            $.ajax({
+                method: "GET",
+                url: "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&units=imperial&appid=" + apiKey
+            }).then(function (buttonResponse) {
+                var date = moment().format("MMM Do YYYY"); //current date
+                //printing to html
+                $(".name").html("<h1>" + buttonResponse.name + "<h2>" + "<br>" + date + "</br>" + "</h2>" + "</h1>");
+                $(".temp").html("<b>" + "Temperature: " + buttonResponse.main.temp + " F ");
+                $(".humidity").html("<b>" + "Humidity: " + buttonResponse.main.humidity + " ");
+                var humidity = $("<i>").attr("class", "fas fa-water");
+                $(".humidity").append(humidity);
+                $(".wind").html("<b>" + "Wind Speed: " + buttonResponse.wind.speed + " ");
+                var wind = $("<i>").attr("class", "fas fa-wind");
+                $(".wind").append(wind);
