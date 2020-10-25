@@ -18,3 +18,95 @@ header {
     color: white;
 }
 
+.title {
+    font-weight: normal;
+    font-size: 80px;
+}
+
+@media only screen and (max-width: 1000px) {
+    .title{
+        font-size: 50px;
+    }
+}
+
+#weatherContainer, #forecastContainer, .cities {
+    background-color: rgb(223, 223, 223);
+    opacity: 0.9;
+    margin-bottom: 10px;
+}
+
+#forecast {
+    margin-right: auto;
+    margin-left: auto;
+    margin-bottom: 20px;
+}
+
+
+h1 {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: bold;
+}
+
+h2 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 25px;
+    position: relative;
+    bottom: 20px;
+    color: rgb(60, 148, 183);
+}
+
+img {
+    margin-left: 50px;
+    width: 80px;
+    height: 80px;
+}
+
+h3, b, h5 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+h5 {
+    text-align: center;  
+}
+
+.cities {
+    border-radius: 5px;
+    height: 400px;
+}
+@media only screen and (max-width: 1000px) {
+    .cities{
+        margin-left: 25px;
+    }
+}
+
+#cityList:hover {
+    background-color: rgb(60, 148, 183);
+}
+
+#cityList:active {
+    background-color: white;
+}
+
+.txtbox {
+    margin-left: 40px;
+    font-family: 'Montserrat', sans-serif;
+}
+
+#search {
+    width: 30px;
+    height: 30px;
+    background-color: white;
+    box-shadow: 5px 2px 3px white;
+    border-radius: 20px;
+}
+
+#search:hover {
+    background-color: rgb(80, 127, 185);
+}
+
+p {
+    font-size: 25px;
+    background-color: rgb(255, 147, 108);
+}
